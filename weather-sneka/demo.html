@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="demo.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <a href="https://iconpacks.net/?utm_source=link-attribution&utm_content=2955"></a>
+  </head>
+  <body>
+    <div class="container home mt-2 mb-3" style="background-color: rgba(58, 56, 56, 0.5); color: white">
+      <div class="row ">
+        <div class="col-1"></div>
+        <div class="col-11 d-flex mt-3 justify-content-start">
+          <input id="search" type="text" placeholder="Location" class="search_area" onkeypress="searchForLocation(event)"/>
+          <button onclick="fetchResults()" type="submit" class="search_button button-81" > Search </button>
+        </div>
+      </div>
+      <div class="row mt-4 pad double">
+        <div class="col-3 d-flex justify-content-center">
+          <div>
+            <div class="temp">
+              <h1 style="font-size: 5vw; color: beige; ">
+                <span></span> 
+              </h1>
+            </div>
+            <div class="time_location" style="width: 130px">
+                    <h3 class="" style="color: white; font-size: 4vw"></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+          <div class="condition d-flex">
+            <img src="image\overcast-haze.svg" class="img-fluid" style="width: 40px; height: 40px" />
+            <p style="color: white; font-size: 3vw"></p>
+          </div>
+        </div>
+        <div class="col-3">
+            <div class="d-flex justify-content-center time_location">
+              <span style="font-size: 20px; font-weight: bold; color: white"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3 d-flex justify-content-center">
+        <div class="row">
+          <p class="d-flex pad justify-content-center"><b>AIR CONDITIONS</b></p>
+        </div>
+        <div class="row d-flex ">
+          <div class="col-1 d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+          </div>
+          <div class="col scroll color-1">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src="image\thermometer.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>Feels Like</p>
+              <p id="feels">30°</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center wind">
+              <img
+                src="image\wind.svg"
+                class="img-fluid"
+                style="width: 30px; height: 30px"
+              />
+              <p>Wind</p>
+              <p id="wind">11.9</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src="image\humidity.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>Humidity</p>
+              <h6 id="humidity">40</h6>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4  text-center">
+              <img
+                src="image\uv-index.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>UV Index</p>
+              <p id="uv">3</p>
+            </div>
+    
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4  text-center">
+              <img
+                src="image\pressure-high.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>pressure</p>
+              <p id="pressure">20</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4  text-center wind">
+              <img
+                src="image\cloudy.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>cloud</p>
+              <p id="cloud">11.9</p>
+            </div>
+    
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src="image\wind-alert.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>winddegree</p>
+              <p id="winddegree">23</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src="image\fahrenheit.svg"
+                class="img-fluid"
+                style="width: 40px; height: 40px"
+              />
+              <p>fahrenheit</p>
+              <p id="fahrenheit">92</p>
+            </div>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3 mb-3 d-flex justify-content-center">
+        <div class="row">
+          <p class="d-flex pad justify-content-center"><b>WEATHER WEEK</b></p>
+        </div>
+        <div class="row d-flex">
+          <div class="col-1 d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+          </div>
+          <div class="col scroll color-1">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src=""
+                class="img-fluid icon2"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day2"></p>
+              <p id="condn2"></p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center wind">
+              <img
+                src=""
+                class="img-fluid icon3"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day3"></p>
+              <p id="condn3"></p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src=""
+                class="img-fluid icon4"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day4"></p>
+              <p id="condn4"></p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src=""
+                class="img-fluid icon5"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day5"></p>
+              <p id="condn5"></p>
+            </div>
+  
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center">
+              <img
+                src=""
+                class="img-fluid icon6"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day6"></p>
+              <p id="condn6"></p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-center wind">
+              <img
+                src=""
+                class="img-fluid icon7"
+                style="width: 30px; height: 30px"
+              />
+              <p id="day7"></p>
+              <p id="condn7"></p>
+            </div>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="weather.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"
+  ></script>
+</html>
